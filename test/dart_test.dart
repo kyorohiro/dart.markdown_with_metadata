@@ -6,14 +6,8 @@ void main() {
 
     setUp(() {
     });
-/*
-    test('not exist metadata', () async{
-      String convertedText = await markd.markdownToHtml("# h1");
-      print(convertedText);
-    });
-*/
     test('meta data1', () async {
-      markd.MarkdownData markdownData = await markd.markdownToHtml(
+      markd.HtmlAndMetadata markdownData = await markd.createHtml(
           "---\r\n" // 0-5
           "a:b\r\n"  // 5-10
           "test:test\r\n" // 11-22
@@ -26,7 +20,7 @@ void main() {
     });
 
     test('meta data2', () async {
-      markd.MarkdownData markdownData = await markd.markdownToHtml(
+      markd.HtmlAndMetadata markdownData = await markd.createHtml(
           "---\r\n" // 0-5
               "a:b\r\n"  // 5-10
               "test:test\r\n asdfasdf\r\n" // 11-22
