@@ -14,21 +14,33 @@ https://creativecommons.org/share-your-work/public-domain/cc0/
 
 ```
 import 'package:markdown_with_metadata/markdown.dart';
+import 'dart:async';
 
-void main() {
-    HtmlAndMetadata data = await createHtml(
+Future<Null> main() async {
+  HtmlAndMetadata data = await createHtml(
       "---\r\n"
-      "a:b\r\n"
-      "test:test\r\n"
-      "---\r\n"
-      "# test\r\n"
-      "Game programming\r\n");
-    data.
+          "a:b\r\n"
+          "test:test\r\n"
+          "---\r\n"
+          "# test\r\n"
+          "Game programming\r\n");
+  for(String k in data.metadata.keys) {
+    print("${k} : ${data.metadata[k]}");
+  }
+  print(data.html);
 }
+
 ```
 
 ## Features and bugs
 
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+```
+---
+title : The Game of life
+author : Yamada tarou
+about :
+ Hello, World!!
+ You can write multiple line in metadata
+---\r\n
+# test\r\n
+```

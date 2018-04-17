@@ -9,7 +9,7 @@ void main() {
     test('meta data1', () async {
       markd.HtmlAndMetadata markdownData = await markd.createHtml(
           "---\r\n" // 0-5
-          "a:b\r\n"  // 5-10
+          "a: b\r\n"  // 5-10
           "test:test\r\n" // 11-22
           "---\r\n"
           "# test\r\n"

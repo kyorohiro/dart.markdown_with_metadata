@@ -72,17 +72,17 @@ class Metadata {
       parser.push();
 
       //
-      // --- crlf
+      // --- (space) crlf
       await parser.nextString("---");await eSpace(parser);await eCrlf(parser);
       //
-      // <xxx> : <yyy> crlf
+      // <xxx> (space) : (space) <yyy> crlf
       do{
         if(0 != await parser.checkBytesFromMatchBytes(conv.UTF8.encode(" \t")));
         await eKeyValue(parser);
       } while(0 == await parser.checkString("---"));
 
       //
-      // --- crlf
+      // --- (space) crlf
       await parser.nextString("---");await eSpace(parser);await eCrlf(parser);
 
       parser.pop();
@@ -96,11 +96,11 @@ class Metadata {
 
   Future<bool> eKeyValue(pars.TinyParser parser) async {
     String k = await eKey(parser);
-    await parser.nextString(":");
+    await parser.nextString(":");await eSpace(parser);
     var v = await eValue(parser);
     await eSpace(parser);
     await eCrlf(parser);
-    metadata[k] = v;
+    metadata[k.trim()] = v;
   }
 
   Future<String> eKey(pars.TinyParser parser) async {
