@@ -1,19 +1,31 @@
-# dart
+# Markdown + metadata
 
 A library for Dart developers.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+
+# license
+
+CC0
+
+https://creativecommons.org/share-your-work/public-domain/cc0/
+
 
 ## Usage
 
-A simple usage example:
+```
+import 'package:markdown_with_metadata/markdown.dart';
 
-    import 'package:dart/dart.dart';
-
-    main() {
-      var awesome = new Awesome();
-    }
+void main() {
+    HtmlAndMetadata data = await createHtml(
+      "---\r\n"
+      "a:b\r\n"
+      "test:test\r\n"
+      "---\r\n"
+      "# test\r\n"
+      "Game programming\r\n");
+    data.
+}
+```
 
 ## Features and bugs
 
