@@ -75,9 +75,8 @@ class Metadata {
       // --- (space) crlf
       await parser.nextString("---");await eSpace(parser);await eCrlf(parser);
       //
-      // <xxx> (space) : (space) <yyy> crlf
       do{
-        if(0 != await parser.checkBytesFromMatchBytes(conv.UTF8.encode(" \t")));
+        // <xxx> (space) : (space) <yyy> crlf
         await eKeyValue(parser);
       } while(0 == await parser.checkString("---"));
 
