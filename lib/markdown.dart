@@ -63,7 +63,7 @@ class Metadata {
     reader.addBytes(conv.UTF8.encode(source));
     reader.loadCompleted = true;
     int ret = await eMetadata(parser);
-    content = source.substring(ret);
+    content = (ret<source.length?source.substring(ret):source);
     return ret;
   }
 
@@ -116,7 +116,8 @@ class Metadata {
     List<int> v = await parser.matchBytesFromBytes(conv.UTF8.encode("\r\n"), expectedMatcherResult: false);
     String ret = conv.UTF8.decode(v);
 
-    if((0 != await parser.checkString("\r\n ") || 0 != await parser.checkString("\r\n\t"))) {
+    if(0 != await parser.checkString("\r\n ") || 0 != await parser.checkString("\r\n\t")
+        || 0 != await parser.checkString("\n ") || 0 != await parser.checkString("\n\t")) {
       return ret + await eCrlf(parser) + (await eSpace(parser)?"":"") + await eValue(parser);
     }
     else {
