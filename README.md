@@ -15,36 +15,29 @@ https://creativecommons.org/share-your-work/public-domain/cc0/
 ```
 import 'package:markdown_with_metadata/markdown.dart';
 import 'dart:async';
+import 'dart:convert' as conv;
 
 Future<Null> main() async {
   HtmlAndMetadata data = await createHtml(
       "---\r\n"
-      "a:b\r\n"
-      "test:test\r\n"
+      "title : The Game of life\r\n"
+      "author : Yamada tarou\r\n"
+      "about :\r\n"
+      " Hello, World!!\r\n"
+      " You can write multiple line in metadata\r\n"
       "---\r\n"
       "# test\r\n"
       "Game programming\r\n");
-  for(String k in data.metadata.keys) {
-    print("${k} : ${data.metadata[k]}");
-  }
+
+  print(conv.JSON.encode(data.metadata));
   print(data.html);
 }
 
 ```
 
-## Features and bugs
+```
+{"title":"The Game of life","author":"Yamada tarou","about":"\r\nHello, World!!\r\nYou can write multiple line in metadata"}
+<h1>test</h1>
+<p>Game programming</p>
+```
 
-```
----
-title : The Game of life
-author : Yamada tarou
-about :
- Hello, World!!
- You can write multiple line in metadata
----
-# title
-adsf
-adf
-adsfa
-sdf
-```
